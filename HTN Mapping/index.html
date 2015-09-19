@@ -84,7 +84,9 @@
     
     var ref = new Firebase("https://quiklist.firebaseio.com/");
     var wallRef = new Firebase("https://quiklist.firebaseio.com/wall");
-            
+    var deliRef = new Firebase("https://quiklist.firebaseio.com/Deli");
+    var bakeRef = new Firebase("https://quiklist.firebaseio.com/Bake");
+                
 
     /*ref.set({"User": "name", "Hello": "World"});
     /*var ref = new Firebase("https://z4oo38jwdil.firebaseio-demo.com/");*/
@@ -103,6 +105,16 @@
     var c=document.getElementById("myCanvas");
     var ctx=c.getContext("2d");    
     var globalArray = [] 
+    var globalDeli = []
+    var globalBake = []
+    var globalDairy = []
+    var globalMeat = []
+    var globalSeafood = []
+    var globalBulk = []
+    var globalProduce = []
+    var globalFlorist = []
+    var globalGrocery = []
+    var globalFrozen = []
 
 
     function drawGrid(){
@@ -116,46 +128,82 @@
 
     function drawWall(){
         /*Retrieve information from api*/
-        var arrOfWall = globalArray
+        var arrOfWall = globalArray;
         for(i = 0; i< arrOfWall.length; i++){
+            ctx.fillStyle = "#000000";
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
 
 
-    function drawImportant(){
-        
+    function drawDeli(){
+        var arrOfWall = globalDeli;
+        for(i = 0; i< arrOfWall.length; i++){
+            ctx.fillStyle = "#FF00FF";
+            ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
+        }
     }
 
+    function drawBake(){
+        var arrOfWall = globalBake;
+        for(i = 0; i< arrOfWall.length; i++){
+            ctx.fillStyle = "#FFA500";
+            ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
+        }
+    }
 
     function readingData(){
         var fin = [];
-
-        var snapshotLen=0;
-        
         wallRef.on('child_added', function(snapshot) {
-            snapshotLen++;
-           
             message = snapshot.val();       
-            console.log("snapshotLen: ", snapshotLen);
-            console.log("message: ",message);
-           
             temp = []   
             temp = temp.concat(message['x']);
             temp = temp.concat(message['y']);
-          
-            fin = fin.concat([temp]); 
-            console.log("Return value: ", fin)
-            globalArray = fin
+            fin = fin.concat([temp]);  
+            globalArray = fin;
         });
 
 
     }
     
+    function readingDeliData(){
+        var fin = [];
+        deliRef.on('child_added', function(snapshot) {       
+            message = snapshot.val();       
+            temp = []   
+            temp = temp.concat(message['x']);
+            temp = temp.concat(message['y']);
+            fin = fin.concat([temp]); 
+            globalDeli = fin;
+        });
+    }
+
+    function readingBakeData(){
+        var fin = [];
+        bakeRef.on('child_added', function(snapshot) {       
+            message = snapshot.val();       
+            temp = []   
+            temp = temp.concat(message['x']);
+            temp = temp.concat(message['y']);
+            fin = fin.concat([temp]); 
+            globalBake = fin;
+        });
+    }
+
+    readingDeliData();
+    readingBakeData();
+    
     readingData(); 
     drawGrid();
-    setTimeout(function(){drawWall();}, 5000);  
-     
+    setTimeout(function(){drawDeli();}, 5000);
+    setTimeout(function(){drawBake();}, 5000);  
+    setTimeout(function(){drawWall();}, 5000);
+    
+
+      
+    
+    
+
    </script>
 
 </body>
