@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="js/addInput.js" language="Javascript" type="text/javascript"></script> <!-- adding another item to the list -->
 	</head>
 
     <body>
@@ -22,15 +23,12 @@
 		<h1 id="title">QuickList</h1>
 	    </header>
 	  <form role="form">
-		  <div class="form-group">
-			<label for="item">Item:</label>
-			<input type="text" class="form-control" id="item">
+		  <div id="form-group">
+			<label for="item" >Item 1:</label>
+			<input type="text" class="form-control" id="item" name="myInputs[]">
 		  </div>
-		  <div class="form-group">
-			<label for="item">Item:</label>
-			<input type="text" class="form-control" id="item">
-		  </div>
-		  <button type="submit" class="btn btn-default">Submit</button>
+		  <input type="button" class="btn btn-default" value="+" onClick="addInput('form-group');">
+		  <br/><br/><button type="submit" class="btn btn-default">Submit</button>
 		</form>
     </body>
 </html>
