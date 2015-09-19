@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Logo Nav - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/logo-nav.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="http://placehold.it/150x50&text=Logo" alt="">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Temp QuikList Landing page</h1>
+                <p>Note: You may need to adjust some CSS based on the size of your logo. The default logo size is 150x50 pixels.</p>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+    
+    var ref = new Firebase("https://quiklist.firebaseio.com/");
+    var wallRef = new Firebase("https://quiklist.firebaseio.com/wall");
+            
+
+    /*ref.set({"User": "name", "Hello": "World"});
+    /*var ref = new Firebase("https://z4oo38jwdil.firebaseio-demo.com/");*/
+
+    </script>
+
+    <center><h1> Grid </h1></center>
+
+    <center><canvas id="myCanvas" width="300" height="300" style="border:1px solid;">
+    </canvas>
+    </center>
+
+    
+    <script type="text/javascript">
+    
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");    
+    var globalArray = [] 
+
+
+    function drawGrid(){
+        for(i = 0; i< 300; i+=10){
+            for(j = 0; j< 300; j+=10){
+                ctx.rect(i,j,10,10);           
+                ctx.stroke();
+            }
+        }
+    }
+
+    function drawWall(){
+        /*Retrieve information from api*/
+        var arrOfWall = globalArray
+        for(i = 0; i< arrOfWall.length; i++){
+            ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
+        }
+    }
+
+
+    function drawImportant(){
+        
+    }
+
+
+    function readingData(){
+        var fin = [];
+
+        var snapshotLen=0;
+        
+        wallRef.on('child_added', function(snapshot) {
+            snapshotLen++;
+           
+            message = snapshot.val();       
+            console.log("snapshotLen: ", snapshotLen);
+            console.log("message: ",message);
+           
+            temp = []   
+            temp = temp.concat(message['x']);
+            temp = temp.concat(message['y']);
+          
+            fin = fin.concat([temp]); 
+            console.log("Return value: ", fin)
+            globalArray = fin
+        });
+
+
+    }
+    
+    readingData(); 
+    drawGrid();
+    setTimeout(function(){drawWall();}, 5000);  
+     
+   </script>
+
+</body>
+</html>
+    
