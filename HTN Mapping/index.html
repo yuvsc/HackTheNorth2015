@@ -86,7 +86,12 @@
     var wallRef = new Firebase("https://quiklist.firebaseio.com/wall");
     var deliRef = new Firebase("https://quiklist.firebaseio.com/Deli");
     var bakeRef = new Firebase("https://quiklist.firebaseio.com/Bake");
-                
+    var dairyRef = new Firebase("https://quiklist.firebaseio.com/Dairy");
+    var meatRef = new Firebase("https://quiklist.firebaseio.com/Meat");
+    var seafoodRef = new Firebase("https://quiklist.firebaseio.com/Seafood");
+    var bulkRef = new Firebase("https://quiklist.firebaseio.com/Bulk");
+    var produceRef = new Firebase("https://quiklist.firebaseio.com/Produce");
+                        
 
     /*ref.set({"User": "name", "Hello": "World"});
     /*var ref = new Firebase("https://z4oo38jwdil.firebaseio-demo.com/");*/
@@ -152,6 +157,46 @@
         }
     }
 
+    function drawDairy(){
+        var arrOfWall = globalDairy;
+        for(i = 0; i< arrOfWall.length; i++){
+            ctx.fillStyle = "#FFFF00";
+            ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
+        }
+    }
+
+    function drawMeat(){
+        var arrOfWall = globalMeat;
+        for(i = 0; i< arrOfWall.length; i++){
+            ctx.fillStyle = "#FF0000";
+            ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
+        }
+    }
+
+    function drawSeafood(){
+        var arrOfWall = globalSeafood;
+        for(i = 0; i< arrOfWall.length; i++){
+            ctx.fillStyle = "#0000FF";
+            ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
+        }
+    }
+
+    function drawBulk(){
+        var arrOfWall = globalBulk;
+        for(i = 0; i< arrOfWall.length; i++){
+            ctx.fillStyle = "#D3D3D3";
+            ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
+        }
+    }
+
+    function drawProduce(){
+        var arrOfWall = globalProduce;
+        for(i = 0; i< arrOfWall.length; i++){
+            ctx.fillStyle = "#00FF00";
+            ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
+        }
+    }
+
     function readingData(){
         var fin = [];
         wallRef.on('child_added', function(snapshot) {
@@ -190,13 +235,88 @@
         });
     }
 
+    function readingDairyData(){
+        var fin = [];
+        dairyRef.on('child_added', function(snapshot) {       
+            message = snapshot.val();       
+            temp = []   
+            temp = temp.concat(message['x']);
+            temp = temp.concat(message['y']);
+            fin = fin.concat([temp]); 
+            globalDairy = fin;
+        });
+    }
+
+    function readingMeatData(){
+        var fin = [];
+        meatRef.on('child_added', function(snapshot) {       
+            message = snapshot.val();       
+            temp = []   
+            temp = temp.concat(message['x']);
+            temp = temp.concat(message['y']);
+            fin = fin.concat([temp]); 
+            globalMeat = fin;
+        });
+    }
+
+
+    function readingSeafoodData(){
+        var fin = [];
+        seafoodRef.on('child_added', function(snapshot) {       
+            message = snapshot.val();       
+            temp = []   
+            temp = temp.concat(message['x']);
+            temp = temp.concat(message['y']);
+            fin = fin.concat([temp]); 
+            globalSeafood = fin;
+        });
+    }
+
+    function readingBulkData(){
+        var fin = [];
+        bulkRef.on('child_added', function(snapshot) {       
+            message = snapshot.val();       
+            temp = []   
+            temp = temp.concat(message['x']);
+            temp = temp.concat(message['y']);
+            fin = fin.concat([temp]); 
+            globalBulk = fin;
+        });
+    }
+
+    function readingProduceData(){
+        var fin = [];
+        produceRef.on('child_added', function(snapshot) {       
+            message = snapshot.val();       
+            temp = []   
+            temp = temp.concat(message['x']);
+            temp = temp.concat(message['y']);
+            fin = fin.concat([temp]); 
+            globalProduce = fin;
+        });
+    }
+
+
     readingDeliData();
     readingBakeData();
+    readingDairyData();
+    readingMeatData();
+    readingSeafoodData();
+    readingBulkData();
+    readingProduceData();
     
     readingData(); 
+
     drawGrid();
     setTimeout(function(){drawDeli();}, 5000);
-    setTimeout(function(){drawBake();}, 5000);  
+    setTimeout(function(){drawBake();}, 5000);
+    setTimeout(function(){drawDairy();}, 5000);   
+    setTimeout(function(){drawMeat();}, 5000);   
+    setTimeout(function(){drawSeafood();}, 5000);
+    setTimeout(function(){drawBulk();}, 5000);
+    setTimeout(function(){drawProduce();}, 5000);
+    
+
     setTimeout(function(){drawWall();}, 5000);
     
 
