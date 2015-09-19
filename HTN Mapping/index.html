@@ -132,7 +132,7 @@
         for(i = 0; i< arrOfWall.length; i++){
             ctx.fillStyle = "#000000";
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
-        }
+        }   
 
     }
 
@@ -164,8 +164,6 @@
             fin = fin.concat([temp]);  
             globalArray = fin;
         });
-
-
     }
     
     function readingDeliData(){
@@ -201,8 +199,6 @@
     setTimeout(function(){drawBake();}, 5000);  
     setTimeout(function(){drawWall();}, 5000);
     
-    
-
    </script>
 
 </body>
