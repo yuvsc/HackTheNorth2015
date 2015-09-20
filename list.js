@@ -66,28 +66,31 @@ console.log(res.length);
 var readingFoodData = function(){
         var fin = [];
         for(var i =0;i<Deli.length;i++){
-            fin.push(Deli[i]);
+            fin.push(Deli[i],0);
         }
         for(var i =0;i<Dairy.length;i++){
-            fin.push(Dairy[i]);
+            fin.push(Dairy[i],1);
         }
         for(var i =0;i<Meat.length;i++){
-            fin.push(Meat[i]);
+            fin.push(Meat[i],2);
         }
         for(var i =0;i<Bakery.length;i++){
-            fin.push(Bakery[i]);
+            fin.push(Bakery[i],3);
         }
         for(var i =0;i<Produce.length;i++){
-            fin.push(Produce[i]);
+            fin.push(Produce[i],4);
         }
         for(var i =0;i<Frozen.length;i++){
-            fin.push(Frozen[i]);
+            fin.push(Frozen[i],5);
         }
         for(var i =0;i<Snacks.length;i++){
-            fin.push(Snacks[i]);
+            fin.push(Snacks[i],6);
         }
         for(var i =0;i<Seafood.length;i++){
-            fin.push(Seafood[i]);
+            fin.push(Seafood[i],7);
+        }
+        for(var i =0;i<Bulk.length;i++){
+            fin.push(Bulk[i],8);
         }
         return fin;
         };
