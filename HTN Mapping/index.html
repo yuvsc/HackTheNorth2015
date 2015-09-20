@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <script type="text/javascript" src="bower_components/pathfinding/pathfinding-browser.min.js"></script>
+    <!--<script type="text/javascript" src="bower_components/pathfinding/pathfinding-browser.min.js"></script>-->
+    <script type="text/javascript" src="../../testpathfinding/bower_components/pathfinding/pathfinding-browser.min.js"></script>
 
     <title>Logo Nav - Start Bootstrap Template</title>
 
@@ -92,11 +93,9 @@
     var seafoodRef = new Firebase("https://quiklist.firebaseio.com/Seafood");
     var bulkRef = new Firebase("https://quiklist.firebaseio.com/Bulk");
     var produceRef = new Firebase("https://quiklist.firebaseio.com/Produce");
-
     var frozenRef = new Firebase("https://quiklist.firebaseio.com/Frozen");
     var snacksRef = new Firebase("https://quiklist.firebaseio.com/Snacks");
                             
-
     /*ref.set({"User": "name", "Hello": "World"});
     /*var ref = new Firebase("https://z4oo38jwdil.firebaseio-demo.com/");*/
     </script>
@@ -124,8 +123,6 @@
     var globalGrocery = []
     var globalFrozen = []
     var globalSnacks = []
-
-
     function drawGrid(){
         for(i = 0; i< 300; i+=10){
             for(j = 0; j< 300; j+=10){
@@ -191,7 +188,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function drawFrozen(){
         var arrOfWall = globalFrozen;
         for(i = 0; i< arrOfWall.length; i++){
@@ -199,7 +195,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function drawSnacks(){
         var arrOfWall = globalSnacks;
         for(i = 0; i< arrOfWall.length; i++){
@@ -207,7 +202,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function readingData(){
         var fin = [];
         wallRef.on('child_added', function(snapshot) {
@@ -297,7 +291,6 @@
             globalProduce = fin;
         });
     }
-
     function readingFrozenData(){
         var fin = [];
         frozenRef.on('child_added', function(snapshot) {       
@@ -309,7 +302,6 @@
             globalFrozen = fin;
         });
     }
-
     function readingSnacksData(){
         var fin = [];
         snacksRef.on('child_added', function(snapshot) {       
@@ -321,8 +313,6 @@
             globalSnacks = fin;
         });
     }
-
-
     readingDeliData();
     readingBakeData();
     readingDairyData();
@@ -396,12 +386,8 @@
         allowDiagonal : true
     });
     //var finder = new PF.AStarFinder();
-    var path = finder.findPath(0, 29, 29, 0, grid);
+    var path = finder.findPath(0, 29, 14, 6, grid);
     console.log("{0}", path);
-
-
-
-
     function drawFinal(){
         var arrOfWall = path;
             console.log("arrOfWall", arrOfWall);
@@ -411,9 +397,7 @@
             ctx.fillRect(arrOfWall[i][0]*10,arrOfWall[i][1]*10,10,10); 
         }
     }
-
     setTimeout(function(){drawFinal();}, 4000);
-
    </script>
 
 </body>
