@@ -100,3 +100,24 @@ var huhu = readingFoodData();
 for(var t = 0; t<huhu.length;t++){
     console.log(huhu[t]);
 }
+
+var ImSoDone = function(formString, sectionLists){
+    var nodes = [];
+    for(var i =0;i<formString.length;i++){
+        var found = false;
+        for(var u = 0;u<sectionLists.length;u++){
+            var w = 0;
+            while(w<sectionLists[u].length and found != true){
+                if(formString[i] == sectionLists[u][w]){
+                   found = true;
+                   nodes.push(sectionLists[u][w][1]);
+                   }
+                else{
+                   w+=1;
+                   }
+            }
+        }
+    }
+    return nodes;
+}
+
