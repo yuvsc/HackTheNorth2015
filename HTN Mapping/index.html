@@ -92,10 +92,8 @@
     var bulkRef = new Firebase("https://quiklist.firebaseio.com/Bulk");
     var produceRef = new Firebase("https://quiklist.firebaseio.com/Produce");
                         
-
     /*ref.set({"User": "name", "Hello": "World"});
     /*var ref = new Firebase("https://z4oo38jwdil.firebaseio-demo.com/");*/
-
     </script>
 
     <center><h1> Grid </h1></center>
@@ -120,8 +118,6 @@
     var globalFlorist = []
     var globalGrocery = []
     var globalFrozen = []
-
-
     function drawGrid(){
         for(i = 0; i< 300; i+=10){
             for(j = 0; j< 300; j+=10){
@@ -130,19 +126,14 @@
             }
         }
     }
-
     function drawWall(){
         /*Retrieve information from api*/
         var arrOfWall = globalArray;
         for(i = 0; i< arrOfWall.length; i++){
             ctx.fillStyle = "#000000";
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
-        }   
-
+        }
     }
-
-    function drawImportant(){
-
     function drawDeli(){
         var arrOfWall = globalDeli;
         for(i = 0; i< arrOfWall.length; i++){
@@ -150,7 +141,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function drawBake(){
         var arrOfWall = globalBake;
         for(i = 0; i< arrOfWall.length; i++){
@@ -158,7 +148,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function drawDairy(){
         var arrOfWall = globalDairy;
         for(i = 0; i< arrOfWall.length; i++){
@@ -166,7 +155,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function drawMeat(){
         var arrOfWall = globalMeat;
         for(i = 0; i< arrOfWall.length; i++){
@@ -174,7 +162,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function drawSeafood(){
         var arrOfWall = globalSeafood;
         for(i = 0; i< arrOfWall.length; i++){
@@ -182,7 +169,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function drawBulk(){
         var arrOfWall = globalBulk;
         for(i = 0; i< arrOfWall.length; i++){
@@ -190,7 +176,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function drawProduce(){
         var arrOfWall = globalProduce;
         for(i = 0; i< arrOfWall.length; i++){
@@ -198,7 +183,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function readingData(){
         var fin = [];
         wallRef.on('child_added', function(snapshot) {
@@ -222,7 +206,6 @@
             globalDeli = fin;
         });
     }
-
     function readingBakeData(){
         var fin = [];
         bakeRef.on('child_added', function(snapshot) {       
@@ -234,7 +217,6 @@
             globalBake = fin;
         });
     }
-
     function readingDairyData(){
         var fin = [];
         dairyRef.on('child_added', function(snapshot) {       
@@ -246,7 +228,6 @@
             globalDairy = fin;
         });
     }
-
     function readingMeatData(){
         var fin = [];
         meatRef.on('child_added', function(snapshot) {       
@@ -258,8 +239,6 @@
             globalMeat = fin;
         });
     }
-
-
     function readingSeafoodData(){
         var fin = [];
         seafoodRef.on('child_added', function(snapshot) {       
@@ -271,7 +250,6 @@
             globalSeafood = fin;
         });
     }
-
     function readingBulkData(){
         var fin = [];
         bulkRef.on('child_added', function(snapshot) {       
@@ -283,7 +261,6 @@
             globalBulk = fin;
         });
     }
-
     function readingProduceData(){
         var fin = [];
         produceRef.on('child_added', function(snapshot) {       
@@ -295,8 +272,6 @@
             globalProduce = fin;
         });
     }
-
-
     readingDeliData();
     readingBakeData();
     readingDairyData();
@@ -306,7 +281,6 @@
     readingProduceData();
     
     readingData(); 
-
     drawGrid();
     setTimeout(function(){drawDeli();}, 5000);
     setTimeout(function(){drawBake();}, 5000);
@@ -316,11 +290,12 @@
     setTimeout(function(){drawBulk();}, 5000);
     setTimeout(function(){drawProduce();}, 5000);
     
-
     setTimeout(function(){drawWall();}, 5000);
+    
+      
+    
     
    </script>
 
 </body>
 </html>
-    
