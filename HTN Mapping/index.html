@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script type="text/javascript" src="bower_components/pathfinding/pathfinding-browser.min.js"></script>
 
     <title>Logo Nav - Start Bootstrap Template</title>
 
@@ -91,11 +92,13 @@
     var seafoodRef = new Firebase("https://quiklist.firebaseio.com/Seafood");
     var bulkRef = new Firebase("https://quiklist.firebaseio.com/Bulk");
     var produceRef = new Firebase("https://quiklist.firebaseio.com/Produce");
-                        
+
+    var frozenRef = new Firebase("https://quiklist.firebaseio.com/Frozen");
+    var snacksRef = new Firebase("https://quiklist.firebaseio.com/Snacks");
+                            
 
     /*ref.set({"User": "name", "Hello": "World"});
     /*var ref = new Firebase("https://z4oo38jwdil.firebaseio-demo.com/");*/
-
     </script>
 
     <center><h1> Grid </h1></center>
@@ -120,6 +123,7 @@
     var globalFlorist = []
     var globalGrocery = []
     var globalFrozen = []
+    var globalSnacks = []
 
 
     function drawGrid(){
@@ -130,7 +134,6 @@
             }
         }
     }
-
     function drawWall(){
         /*Retrieve information from api*/
         var arrOfWall = globalArray;
@@ -139,8 +142,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
-
     function drawDeli(){
         var arrOfWall = globalDeli;
         for(i = 0; i< arrOfWall.length; i++){
@@ -148,7 +149,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function drawBake(){
         var arrOfWall = globalBake;
         for(i = 0; i< arrOfWall.length; i++){
@@ -156,7 +156,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function drawDairy(){
         var arrOfWall = globalDairy;
         for(i = 0; i< arrOfWall.length; i++){
@@ -164,7 +163,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function drawMeat(){
         var arrOfWall = globalMeat;
         for(i = 0; i< arrOfWall.length; i++){
@@ -172,7 +170,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function drawSeafood(){
         var arrOfWall = globalSeafood;
         for(i = 0; i< arrOfWall.length; i++){
@@ -180,7 +177,6 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function drawBulk(){
         var arrOfWall = globalBulk;
         for(i = 0; i< arrOfWall.length; i++){
@@ -188,11 +184,26 @@
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
-
     function drawProduce(){
         var arrOfWall = globalProduce;
         for(i = 0; i< arrOfWall.length; i++){
             ctx.fillStyle = "#00FF00";
+            ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
+        }
+    }
+
+    function drawFrozen(){
+        var arrOfWall = globalFrozen;
+        for(i = 0; i< arrOfWall.length; i++){
+            ctx.fillStyle = "#00FFFF";
+            ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
+        }
+    }
+
+    function drawSnacks(){
+        var arrOfWall = globalSnacks;
+        for(i = 0; i< arrOfWall.length; i++){
+            ctx.fillStyle = "#663300";
             ctx.fillRect(arrOfWall[i][0],arrOfWall[i][1],10,10); 
         }
     }
@@ -207,8 +218,6 @@
             fin = fin.concat([temp]);  
             globalArray = fin;
         });
-
-
     }
     
     function readingDeliData(){
@@ -222,7 +231,6 @@
             globalDeli = fin;
         });
     }
-
     function readingBakeData(){
         var fin = [];
         bakeRef.on('child_added', function(snapshot) {       
@@ -234,7 +242,6 @@
             globalBake = fin;
         });
     }
-
     function readingDairyData(){
         var fin = [];
         dairyRef.on('child_added', function(snapshot) {       
@@ -246,7 +253,6 @@
             globalDairy = fin;
         });
     }
-
     function readingMeatData(){
         var fin = [];
         meatRef.on('child_added', function(snapshot) {       
@@ -258,8 +264,6 @@
             globalMeat = fin;
         });
     }
-
-
     function readingSeafoodData(){
         var fin = [];
         seafoodRef.on('child_added', function(snapshot) {       
@@ -271,7 +275,6 @@
             globalSeafood = fin;
         });
     }
-
     function readingBulkData(){
         var fin = [];
         bulkRef.on('child_added', function(snapshot) {       
@@ -283,7 +286,6 @@
             globalBulk = fin;
         });
     }
-
     function readingProduceData(){
         var fin = [];
         produceRef.on('child_added', function(snapshot) {       
@@ -296,6 +298,30 @@
         });
     }
 
+    function readingFrozenData(){
+        var fin = [];
+        frozenRef.on('child_added', function(snapshot) {       
+            message = snapshot.val();       
+            temp = []   
+            temp = temp.concat(message['x']);
+            temp = temp.concat(message['y']);
+            fin = fin.concat([temp]); 
+            globalFrozen = fin;
+        });
+    }
+
+    function readingSnacksData(){
+        var fin = [];
+        snacksRef.on('child_added', function(snapshot) {       
+            message = snapshot.val();       
+            temp = []   
+            temp = temp.concat(message['x']);
+            temp = temp.concat(message['y']);
+            fin = fin.concat([temp]); 
+            globalSnacks = fin;
+        });
+    }
+
 
     readingDeliData();
     readingBakeData();
@@ -304,28 +330,91 @@
     readingSeafoodData();
     readingBulkData();
     readingProduceData();
+    readingFrozenData();
+    readingSnacksData();
     
     readingData(); 
-
     drawGrid();
-    setTimeout(function(){drawDeli();}, 5000);
-    setTimeout(function(){drawBake();}, 5000);
-    setTimeout(function(){drawDairy();}, 5000);   
-    setTimeout(function(){drawMeat();}, 5000);   
-    setTimeout(function(){drawSeafood();}, 5000);
-    setTimeout(function(){drawBulk();}, 5000);
-    setTimeout(function(){drawProduce();}, 5000);
+    setTimeout(function(){drawDeli();}, 2000);
+    setTimeout(function(){drawBake();}, 2000);
+    setTimeout(function(){drawDairy();}, 2000);   
+    setTimeout(function(){drawMeat();}, 2000);   
+    setTimeout(function(){drawSeafood();}, 2000);
+    setTimeout(function(){drawBulk();}, 2000);
+    setTimeout(function(){drawProduce();}, 2000);
     
-
-    setTimeout(function(){drawWall();}, 5000);
+    setTimeout(function(){drawWall();}, 2000);
+    setTimeout(function(){drawDeli();}, 2000);
+    setTimeout(function(){drawBake();}, 2000);
+    setTimeout(function(){drawDairy();}, 2000);   
+    setTimeout(function(){drawMeat();}, 2000);   
+    setTimeout(function(){drawSeafood();}, 2000);
+    setTimeout(function(){drawBulk();}, 2000);
+    setTimeout(function(){drawProduce();}, 2000);
+    setTimeout(function(){drawFrozen();}, 2000);
+    setTimeout(function(){drawSnacks();}, 2000);
+    setTimeout(function(){drawWall();}, 2000);
     
-
       
-    
-    
+    var matrix = [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ];
+ 
+    //var PF = require('pathfinding');
+    var grid = new PF.Grid(matrix);
+    // console.log("{0}", grid);
+    var finder = new PF.AStarFinder({
+        allowDiagonal : true
+    });
+    //var finder = new PF.AStarFinder();
+    var path = finder.findPath(0, 29, 29, 0, grid);
+    console.log("{0}", path);
+
+
+
+
+    function drawFinal(){
+        var arrOfWall = path;
+            console.log("arrOfWall", arrOfWall);
+        for(i = 0; i< arrOfWall.length; i++){
+            console.log("arrOfWall", arrOfWall);
+            ctx.fillStyle = "#66FF66";
+            ctx.fillRect(arrOfWall[i][0]*10,arrOfWall[i][1]*10,10,10); 
+        }
+    }
+
+    setTimeout(function(){drawFinal();}, 4000);
 
    </script>
 
 </body>
 </html>
-    
