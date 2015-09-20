@@ -7,8 +7,7 @@ var Dairy = ["butter","cheese","milk","cream",
     
     var Meat = ['chicken','beef','pork','lunchmeats','bologna','bacon','sausages','turkey','ham'];
     
-    var Produce= 
-['apples','oranges','peaches','watermelon','prunes','celery','cucumber','tomatoes','carrots','radishes','tangerines','clementines','apricots','avocado','blueberries','strawberries','raspberries','blackberries','cherries','figs','star fruit','banana','squash','grapefruit','nectarines','dragonfruit','coconuts','pears','lime','lemon','kiwi','grapes','pomelo','raisin'];
+    var Produce = ['apples','oranges','peaches','watermelon','prunes','celery','cucumber','tomatoes','carrots','radishes','tangerines','clementines','apricots','avocado','blueberries','strawberries','raspberries','blackberries','cherries','figs','star fruit','banana','squash','grapefruit','nectarines','dragonfruit','coconuts','pears','lime','lemon','kiwi','grapes','pomelo','raisin'];
 
 var Frozen= ['frozen vegetables','frozen meals','frozen drinks','pizza','frozen rolls'];
 
@@ -107,14 +106,14 @@ var ImSoDone = function(formString, sectionLists){
         var found = false;
         for(var u = 0;u<sectionLists.length;u++){
             var w = 0;
-            while(w<sectionLists[u].length and found != true){
+            while (w < sectionLists[u].length && found != true){
                 if(formString[i] == sectionLists[u][w]){
                    found = true;
                    nodes.push(sectionLists[u][w][1]);
-                   }
+                }
                 else{
                    w+=1;
-                   }
+                }
             }
         }
     }
